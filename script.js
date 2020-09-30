@@ -1,17 +1,11 @@
-/*Faz uma cópia, preenche, joga na tela... Mapeando a lista:
-arrow function => recebe dois parâmetros: 1º é aquele item, ou seja, cada pizza. O 2º é index, ou seja, 
-o nº do array daquele item específico.
-*/
-//criando uma função que manda um elemento e faz o comando querySelector e retorna
-//Ou seja, tem a função que escrever querySelector
 let cart = [];
 let modalQnt = 1;
 let modalKey = 0;
 
-const c = (el)=> document.querySelector(el); // retorna o item
-const cs = (el)=> document.querySelectorAll(el); //retorna o array dos itens    
+const c = (el)=> document.querySelector(el);
+const cs = (el)=> document.querySelectorAll(el);   
 
-//LISTAGEM DAS PIZZAS (Preenchendo as informações em pizzaitem)
+
 pizzaJson.map((item, index)=>{
     let pizzaItem = c ('.models .pizza-item').cloneNode(true);
 
@@ -22,7 +16,7 @@ pizzaJson.map((item, index)=>{
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
     pizzaItem.querySelector('a').addEventListener('click', (e) =>{
         e.preventDefault();
-        //a partir da tag a, vai procurar o elemento mais próximo (antes ou depois) que tenha ".pizza-item"
+        
         let key = e.target.closest('.pizza-item').getAttribute('data-key');
         modalQnt = 1;
         modalKey = key;
@@ -51,7 +45,6 @@ pizzaJson.map((item, index)=>{
     c ('.pizza-area').append(pizzaItem);
 });
 
-//EVENTOS DO MODAL
 function closeModal() {
     c('.pizzaWindowArea').style.opacity = 0;
     setTimeout(()=>{
@@ -135,9 +128,6 @@ function updateCart() {
                     break;
             }
             let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`;
-/* Outra forma de fazer o mesmo acima mas de uma forma mais simplificada:
-let pizzaSizes = { 0: 'P', 1: 'M', 2: 'G' };
-let pizzaName = `${pizza.name} (${pizzaSizes[cart[i].size]})`; */
 
             cartItem.querySelector('img').src = pizzaItem.img;
             cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
